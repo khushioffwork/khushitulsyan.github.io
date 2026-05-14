@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swiggy UX Case Study – Khushi Tulsyan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FC8019;
+    --orange-light: #FFF3E8;
+    --orange-mid: #FFD9B3;
+    --dark: #1A1208;
+    --mid: #4A3728;
+    --muted: #8C7B6E;
+    --bg: #FDFAF7;
+    --white: #FFFFFF;
+    --border: #EDE4D8;
+    --green: #2D7D46;
+    --red: #C0392B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    padding: 60px 0 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.12;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.07;
+  }
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .header h1 em {
+    color: var(--orange);
+    font-style: italic;
+  }
+  .header-sub {
+    color: #B8A99A;
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #C8B9A9;
+    font-size: 13px;
+  }
+  .meta-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 52px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+  .section p {
+    color: var(--mid);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 52px 0;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--orange-light);
+    border-left: 3px solid var(--orange);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 24px 0;
+  }
+  .callout p {
+    color: var(--mid) !important;
+    font-style: italic;
+    font-size: 15px;
+    margin: 0 !important;
+  }
+  .callout strong {
+    color: var(--dark);
+    font-style: normal;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--orange);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .compare-table th {
+    background: var(--dark);
+    color: white;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0.5px;
+  }
+  .compare-table th:first-child { width: 45%; }
+  .compare-table td {
+    padding: 13px 20px;
+    font-size: 14px;
+    color: var(--mid);
+    border-bottom: 1px solid var(--border);
+    font-weight: 300;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: #FAFAF8; }
+  .yes { color: var(--green); font-weight: 600; }
+  .no { color: var(--red); font-weight: 600; }
+  .partial { color: #E67E22; font-weight: 600; }
+
+  /* USER RESEARCH */
+  .research-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .research-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .research-card .quote {
+    font-size: 14px;
+    color: var(--mid);
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .research-card .attribution {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* SOLUTION STEPS */
+  .steps {
+    margin: 24px 0;
+    counter-reset: step;
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+  }
+  .step-content p {
+    font-size: 14px;
+    color: var(--mid);
+    font-weight: 300;
+    margin: 0 !important;
+  }
+
+  /* METRICS */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .metric-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .metric-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .metric-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .metric-card p {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    margin: 0 !important;
+    line-height: 1.5;
+  }
+
+  /* RISKS */
+  .risk-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .risk-card {
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .risk-card.risk { background: #FEF0EE; border: 1px solid #F5C6C1; }
+  .risk-card.mitigation { background: #EEF7F1; border: 1px solid #B8DEC4; }
+  .risk-card h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .risk-card.risk h4 { color: var(--red); }
+  .risk-card.mitigation h4 { color: var(--green); }
+  .risk-card p {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0 !important;
+  }
+  .risk-card.risk p { color: #7B3329; }
+  .risk-card.mitigation p { color: #1E5C33; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    padding: 36px 40px;
+    text-align: center;
+  }
+  .footer p {
+    color: #8C7B6E;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  .footer strong { color: var(--orange); font-weight: 500; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 28px; }
+    .stats-row { grid-template-columns: 1fr; }
+    .research-grid, .metrics-grid, .risk-row { grid-template-columns: 1fr; }
+    .main { padding: 40px 24px 60px; }
+    .header-inner { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="tag">UX Case Study</div>
+    <h1>Swiggy's <em>Broken</em> Cart Experience</h1>
+    <p class="header-sub">How a single friction point costs Swiggy users — and what to do about it</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-dot"></div> Khushi Tulsyan</div>
+      <div class="meta-item"><div class="meta-dot"></div> Self-Initiated Research</div>
+      <div class="meta-item"><div class="meta-dot"></div> May 2026</div>
+      <div class="meta-item"><div class="meta-dot"></div> Product Management</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ORIGIN -->
+  <div class="section">
+    <div class="section-label">01 — Origin</div>
+    <div class="section-title">How I Found This Problem</div>
+    <p>I was a regular Swiggy user until I noticed a pattern that kept frustrating me: every time I tried to compare menus across two restaurants — something I do almost every time I order — Swiggy would wipe my existing cart the moment I added an item from a different restaurant.</p>
+    <p>This happened to me enough times that I eventually switched to Zomato as my default app. It was only after making that switch that I realised: Zomato lets you maintain separate carts across restaurants while browsing. It felt obvious. Why didn't Swiggy do the same?</p>
+    <div class="callout">
+      <p><strong>"I didn't discover this problem in a spreadsheet.</strong> I discovered it because I was a real user who got frustrated and left. That's the most honest signal a product team can get."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONTEXT -->
+  <div class="section">
+    <div class="section-label">02 — Product Context</div>
+    <div class="section-title">Understanding Swiggy</div>
+    <p>Swiggy is one of India's two dominant food delivery platforms, operating in 500+ cities with millions of daily active users. Its core value proposition is speed, variety, and convenience — helping users discover restaurants, place orders, and receive food with real-time tracking.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Cities across India</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">~70%</span>
+        <span class="stat-label">Food delivery cart abandonment industry avg.</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Dominant players — Swiggy vs Zomato</span>
+      </div>
+    </div>
+
+    <p>In a market where Swiggy and Zomato are near-identical in pricing and restaurant selection, <strong>user experience is the primary differentiator.</strong> Small friction points compound into platform switching behaviour — exactly what happened in my case.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PROBLEM -->
+  <div class="section">
+    <div class="section-label">03 — Problem Statement</div>
+    <div class="section-title">The Cart Replacement Problem</div>
+    <p>Swiggy currently allows users to maintain a cart from only one restaurant at a time. When a user adds an item from a second restaurant, a modal appears asking them to clear their existing cart. The user must either abandon their current selection or abandon exploration of the new restaurant.</p>
+    <p>This creates a forced decision at the worst possible moment — mid-browse, when the user is still in discovery mode and hasn't yet committed to any restaurant.</p>
+
+    <div class="callout">
+      <p><strong>The core issue:</strong> Swiggy conflates the browsing phase with the checkout phase. These are two fundamentally different user states, and the cart system treats them as one.</p>
+    </div>
+
+    <p>The result is added cognitive load — users must now mentally track what they wanted from Restaurant A while exploring Restaurant B. For indecisive users (a very common type in food ordering), this is genuinely exhausting and pushes them toward the path of least resistance: a competitor app.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- USER RESEARCH -->
+  <div class="section">
+    <div class="section-label">04 — User Research</div>
+    <div class="section-title">What Real Users Said</div>
+    <p>I spoke with 8 regular food delivery users in my network — friends and family, aged 18–45 — about their cart experience on Swiggy. The findings were consistent.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Users interviewed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">7/8</span>
+        <span class="stat-label">Found cart clearing frustrating</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">5/8</span>
+        <span class="stat-label">Prefer Zomato for this reason</span>
+      </div>
+    </div>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="quote">"I always open both apps when I'm deciding. On Swiggy I have to remember everything — it's annoying."</div>
+        <div class="attribution">— College student, 20</div>
+      </div>
+      <div class="research-card">
+        <div class="quote">"I've accidentally cleared my cart so many times. At that point I just switch to Zomato."</div>
+        <div class="attribution">— Working professional, 28</div>
+      </div>
+      <div class="research-card">
+        <div class="quote">"Why can't I just save what I want from both places and decide later? It's basic."</div>
+        <div class="attribution">— Family member, 42</div>
+      </div>
+      <div class="research-card">
+        <div class="quote">"The pop-up asking me to clear my cart feels like the app is punishing me for browsing."</div>
+        <div class="attribution">— Friend, 22</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- COMPETITOR ANALYSIS -->
+  <div class="section">
+    <div class="section-label">05 — Competitor Analysis</div>
+    <div class="section-title">How Zomato Handles This</div>
+    <p>Zomato addresses this problem by maintaining separate, persistent carts for each restaurant a user interacts with. Users can freely browse and add items across multiple restaurants, then choose which cart to checkout from at the end.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Swiggy</th>
+          <th>Zomato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Multi-restaurant cart retention</td>
+          <td class="no">✗ Not supported</td>
+          <td class="yes">✓ Supported</td>
+        </tr>
+        <tr>
+          <td>Cart persistence during browsing</td>
+          <td class="no">✗ Cleared on switch</td>
+          <td class="yes">✓ Saved per restaurant</td>
+        </tr>
+        <tr>
+          <td>Side-by-side comparison possible</td>
+          <td class="no">✗ Manual memory required</td>
+          <td class="yes">✓ Naturally supported</td>
+        </tr>
+        <tr>
+          <td>Friction at restaurant switch</td>
+          <td class="no">✗ Forced modal / decision</td>
+          <td class="yes">✓ Seamless</td>
+        </tr>
+        <tr>
+          <td>Operational complexity</td>
+          <td class="yes">✓ Simple</td>
+          <td class="partial">~ Slightly higher</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Notably, Zomato's approach does not compromise their operational model — checkout still happens from one restaurant at a time. The multi-cart feature only affects the <em>browsing experience</em>, not the order fulfilment layer.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SOLUTION -->
+  <div class="section">
+    <div class="section-label">06 — Proposed Solution</div>
+    <div class="section-title">Multi-Cart Preview Feature</div>
+    <p>Introduce a "Saved Selections" layer that sits between the browsing phase and the checkout phase. Users can temporarily hold items from up to 2 restaurants simultaneously while browsing, then choose one cart to proceed to checkout — keeping Swiggy's single-restaurant fulfilment model intact.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Browse & Save Freely</h4>
+          <p>User adds items from Restaurant A. A persistent cart tray appears at the bottom. When they navigate to Restaurant B, instead of a destructive "clear cart" modal, Swiggy saves Restaurant A's items silently and starts a new tray for Restaurant B.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Compare Saved Selections</h4>
+          <p>A "My Selections" tab shows both saved carts side by side — items, prices, estimated delivery time. User can edit either cart freely without losing the other.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Choose & Checkout</h4>
+          <p>When ready, user taps "Order from [Restaurant Name]" on their preferred cart. The other cart is cleared. Checkout proceeds exactly as it does today — no operational changes required.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Cap at 2 Restaurants</h4>
+          <p>To avoid overwhelming the user, limit saved carts to 2 restaurants at a time. If a third is added, prompt the user to remove one existing selection first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SUCCESS METRICS -->
+  <div class="section">
+    <div class="section-label">07 — Success Metrics</div>
+    <div class="section-title">How We'd Measure Impact</div>
+    <p>A successful rollout would be measured across three dimensions — user behaviour, satisfaction, and competitive retention.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon">📉</div>
+        <div>
+          <h4>Cart Abandonment Rate</h4>
+          <p>Target: 15–20% reduction in mid-browse cart abandonment within 60 days of launch</p>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">⏱️</div>
+        <div>
+          <h4>Time-to-Order</h4>
+          <p>Track whether decision time decreases — users who compare should order faster with less friction</p>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">⭐</div>
+        <div>
+          <h4>App Store Rating</h4>
+          <p>Monitor review sentiment around cart and browsing experience post-launch</p>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🔁</div>
+        <div>
+          <h4>Session-to-Order Conversion</h4>
+          <p>% of browsing sessions that result in a completed order — key indicator of reduced drop-off</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RISKS -->
+  <div class="section">
+    <div class="section-label">08 — Risks & Tradeoffs</div>
+    <div class="section-title">What Could Go Wrong</div>
+
+    <div class="risk-row">
+      <div class="risk-card risk">
+        <h4>Risk</h4>
+        <p>Users feel overwhelmed managing two saved carts simultaneously, leading to decision paralysis rather than faster ordering.</p>
+      </div>
+      <div class="risk-card mitigation">
+        <h4>Mitigation</h4>
+        <p>Cap at 2 carts. Design the comparison UI to be clean and minimal — one clear "Order from X" CTA per cart, no clutter.</p>
+      </div>
+    </div>
+
+    <div class="risk-row">
+      <div class="risk-card risk">
+        <h4>Risk</h4>
+        <p>Engineering complexity of maintaining parallel cart states could delay rollout or introduce bugs at checkout.</p>
+      </div>
+      <div class="risk-card mitigation">
+        <h4>Mitigation</h4>
+        <p>Phase the rollout — A/B test with 10% of users in 2–3 cities first. Checkout flow remains unchanged, reducing backend risk.</p>
+      </div>
+    </div>
+
+    <div class="risk-row">
+      <div class="risk-card risk">
+        <h4>Risk</h4>
+        <p>Saved carts from a previous session may show outdated prices or unavailable items, causing user confusion.</p>
+      </div>
+      <div class="risk-card mitigation">
+        <h4>Mitigation</h4>
+        <p>Set cart expiry at 2 hours. Show a clear "prices may have changed" warning when a saved cart is resumed after a gap.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONCLUSION -->
+  <div class="section">
+    <div class="section-label">09 — Takeaway</div>
+    <div class="section-title">Why This Matters</div>
+    <p>This is not a complex feature. The technical lift is moderate, the UX pattern already exists on a competitor, and user demand is clear. What makes this worth studying is what it reveals about product philosophy:</p>
+    <div class="callout">
+      <p><strong>Swiggy built their cart for operational simplicity. Zomato built theirs for user behaviour.</strong> In a duopoly where everything else is equal, that difference in philosophy is what drives platform preference — and ultimately, market share.</p>
+    </div>
+    <p>The multi-cart preview feature isn't just a UX improvement. It's a signal to users that Swiggy understands how people actually make decisions — not how the system wishes they would.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Case study by <strong>Khushi Tulsyan</strong> · B.Com (Hons), Delhi University · Self-initiated research, May 2026</p>
+  <p style="margin-top:8px;">This analysis is based on personal usage, user conversations, and publicly available platform information.</p>
+</div>
+
+</body>
+</html>
