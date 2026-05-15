@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khushi Tulsyan — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --brown: #3B2314;
+    --accent: #B5451B;
+    --accent-light: #FDF0EB;
+    --cream: #FBF7F4;
+    --ink: #1A0F0A;
+    --mid: #3D2B1F;
+    --muted: #7A6358;
+    --border: #DDD0C4;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--brown);
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFF8F4;
+    letter-spacing: -0.3px;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: #C9A898;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: #E8A882; }
+
+  /* HERO */
+  .hero {
+    background: var(--brown);
+    padding: 70px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.08;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: #FFF8F4;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+  .hero h1 em { color: #E8A882; font-style: italic; }
+  .hero p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #C9A898;
+    line-height: 1.8;
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: #8B3310; }
+  .btn-secondary {
+    background: transparent;
+    color: #E8A882;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1.5px solid #5A3520;
+  }
+  .btn-secondary:hover { border-color: #E8A882; }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--accent-light);
+    border-top: 3px solid var(--accent);
+    padding: 28px 60px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .about-strip p {
+    font-size: 13px;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.7;
+    flex: 1;
+    min-width: 260px;
+  }
+  .about-strip p strong { font-weight: 600; color: var(--ink); }
+  .stats { display: flex; gap: 36px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
+
+  /* MAIN */
+  main { padding: 60px; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  /* CASE STUDY CARD */
+  .card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-bottom: 24px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 8px 32px rgba(59,35,20,0.12); }
+  .card-left {
+    background: var(--brown);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #E8A882;
+    margin-bottom: 12px;
+  }
+  .card-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFF8F4;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .card-left p {
+    font-size: 12px;
+    color: #C9A898;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .card-view-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .card-view-btn:hover { background: #8B3310; }
+  .card-right { padding: 32px 28px; }
+  .card-right h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .card-points { list-style: none; }
+  .card-points li {
+    font-size: 13px;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .card-points li::before { content: '–'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+  .card-points li strong { font-weight: 600; color: var(--ink); }
+  .card-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .chip {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #F0C4A8;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* COMING SOON CARD */
+  .card-soon {
+    background: white;
+    border: 1.5px dashed var(--border);
+    border-radius: 12px;
+    padding: 36px 28px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .card-soon p { font-size: 13px; font-weight: 300; margin-bottom: 6px; }
+  .card-soon span { font-size: 11px; font-weight: 400; color: #B0A090; }
+
+  /* EXPERIENCE SECTION */
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+  .exp-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 20px;
+  }
+  .exp-card-company {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .exp-card-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .exp-card-date { font-size: 11px; color: var(--muted); font-weight: 300; margin-bottom: 10px; }
+  .exp-card-desc { font-size: 12px; color: var(--mid); font-weight: 300; line-height: 1.65; }
+  .exp-card-desc strong { font-weight: 600; color: var(--ink); }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--brown);
+    border-radius: 12px;
+    padding: 44px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .contact-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #FFF8F4;
+    margin-bottom: 8px;
+  }
+  .contact-section p { font-size: 13px; color: #C9A898; font-weight: 300; }
+  .contact-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 0 0 40px; }
+  footer p { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 48px 24px 60px; }
+    .hero h1 { font-size: 36px; }
+    .about-strip { padding: 24px; }
+    main { padding: 40px 24px; }
+    .card { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .contact-section { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Khushi Tulsyan</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Open to Internships · PM · Growth · Ops</div>
+  <h1>Thinking in<br><em>products,</em><br>building in reality.</h1>
+  <p>Second-year B.Com student at Delhi University. Currently driving outreach at Predis.ai. Self-initiated product thinker with a habit of noticing what's broken and asking why.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#work">View My Work</a>
+    <a class="btn-secondary" href="mailto:khushioffwork@gmail.com">Get In Touch</a>
+  </div>
+</div>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <p>I'm a second-year commerce student who got frustrated with Swiggy, switched to Zomato, and then wrote a 9-section UX audit about it. That's the kind of person I am — <strong>I notice friction, I think about why it exists, and I propose how to fix it.</strong> Currently interning at Predis.ai in SEO and outreach.</p>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">70%</span>
+      <span class="stat-label">Response Rate<br>@ Predis.ai</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">80+</span>
+      <span class="stat-label">Outreach<br>per Week</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">₹51K</span>
+      <span class="stat-label">Revenue from<br>Stall Operations</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- WORK -->
+  <div id="work" style="margin-bottom: 48px;">
+    <div class="section-label">01 — Case Studies</div>
+    <div class="section-title">Product Work</div>
+
+    <div class="card">
+      <div class="card-left">
+        <div>
+          <div class="card-tag">UX Case Study · May 2026</div>
+          <h3>Swiggy's Broken Cart Experience</h3>
+          <p>How a single friction point costs Swiggy users — and what to do about it.</p>
+        </div>
+        <a class="card-view-btn" href="https://khushioffwork.github.io/swiggy_case_study.html" target="_blank">Read Case Study →</a>
+      </div>
+      <div class="card-right">
+        <h4>Key Findings</h4>
+        <ul class="card-points">
+          <li>Identified <strong>multi-restaurant cart friction</strong> as a key drop-off point from personal usage and interviews with <strong>8 users</strong></li>
+          <li>Benchmarked against Zomato's cart system; found Swiggy prioritises operations over user behaviour</li>
+          <li>Proposed <strong>"multi-cart preview"</strong> feature — preserves operational simplicity while reducing cognitive load</li>
+          <li>Defined success metrics: <strong>15–20% reduction in cart abandonment</strong>, improved session-to-order conversion</li>
+          <li>Mapped 3 risk scenarios with mitigations including phased A/B rollout strategy</li>
+        </ul>
+        <div class="card-chips">
+          <span class="chip">UX Research</span>
+          <span class="chip">Product Thinking</span>
+          <span class="chip">Competitor Analysis</span>
+          <span class="chip">User Interviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-soon">
+      <p>More case studies coming soon</p>
+      <span>Currently working on a growth teardown — check back in June 2026</span>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" style="margin-bottom: 48px;">
+    <div class="section-label">02 — Background</div>
+    <div class="section-title">Experience</div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-card-company">Predis.ai</div>
+        <div class="exp-card-role">SEO & Outreach Intern</div>
+        <div class="exp-card-date">March 2026 – Present</div>
+        <div class="exp-card-desc">Driving LinkedIn outreach at <strong>80+ requests/week</strong> with a <strong>70% response rate</strong>. Managing active link-exchange conversations and optimising messaging strategy for off-page SEO.</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-company">Commerce Society · Dyal Singh College</div>
+        <div class="exp-card-role">Marketing Senior</div>
+        <div class="exp-card-date">2024 – Present</div>
+        <div class="exp-card-desc">Restructured event communication strategy and secured a <strong>₹8,000 barter collaboration</strong> with a local F&B brand through direct outreach and negotiation.</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-company">D Street · Stock Market Society</div>
+        <div class="exp-card-role">Content Writer</div>
+        <div class="exp-card-date">2024 – Present</div>
+        <div class="exp-card-desc">Simplified complex financial concepts into beginner-friendly content published on D Street's official Instagram newsletter.</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-company">Self-run</div>
+        <div class="exp-card-role">Food Stall Operations</div>
+        <div class="exp-card-date">2019 – 2022</div>
+        <div class="exp-card-desc">Ran 4 food stalls generating <strong>~₹51,000</strong> in cumulative revenue. Grew per-event revenue from ₹10K to ₹17K by adapting pricing and offerings to demand patterns.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact">
+    <div class="contact-section">
+      <div>
+        <h2>Let's work together.</h2>
+        <p>Open to PM, growth, and operations internships. Always happy to chat.</p>
+      </div>
+      <div class="contact-btns">
+        <a class="btn-primary" href="mailto:khushioffwork@gmail.com">Email Me</a>
+        <a class="btn-secondary" style="color:#E8A882; border-color:#5A3520;" href="https://www.linkedin.com/in/khushi-tulsyan-95a919351" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Khushi Tulsyan · Delhi, India · khushioffwork@gmail.com</p>
+  </footer>
+
+</main>
+</body>
+</html>
